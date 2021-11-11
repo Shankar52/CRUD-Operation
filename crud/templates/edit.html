@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <title>Edit & Update Page</title>
+    {% load static %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'image/favicon.jpg' %}" rel="shortcut icon" type="img/jpg">
+</head>
+<body>
+    <center>
+        <h1>Edit & Update Student Record</h1>
+        <h2>The Student Id Is {{crudst}}</h2>
+        <hr/>
+        <form method="POST" action="/update/{{crudst.id}}">
+            {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td>Student Name</td>
+                <td><input type="text" name="stname" value="{{crudst.stname}}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="stemail" value="{{crudst.stemail}}"></td>
+            </tr>
+            <tr>
+                <td>Adress</td>
+                <td><input type="text" name="stadress" value="{{crudst.stadress}}"></td>
+            </tr>
+            <tr>
+                <td>Mobile</td>
+                <td><input type="text" name="stmobile" value="{{crudst.stmobile}}"></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="text" name="stgender" value="{{crudst.stgender}}"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Update Student Record">
+        <a href="{% url 'stdisplay'%}">Home Page</a>
+        <hr/>
+        {% if messages %}
+        {% for result in messages%}
+        {{result}}
+        {% endfor %}
+        {% endif %}
+        </form>
+    </center>
+</body>
+</html>
